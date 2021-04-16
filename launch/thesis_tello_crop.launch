@@ -1,0 +1,25 @@
+<launch>
+
+    <node pkg="image_proc" type="image_proc" ns="tello_rect" name="image_proc">
+    </node>
+
+    <node pkg="nodelet" type="nodelet"
+        args="standalone image_proc/crop_decimate"
+        name="my_decimator">
+        <!-- w: 389, h: 296 after rectification -->
+        <param name="x_offset" type="int" value="3" />
+        <param name="y_offset" type="int" value="4" />
+        <param name="width" type="int" value="384" />
+        <param name="height" type="int" value="288" />
+
+        <!-- remap input topics -->
+        <remap from="camera/camera_info" to="tello_rect/camera_info"/>
+        <remap from="camera/image_raw" to="tello_rect/image_raw"/>
+
+
+        <!-- remap output topics -->
+        <remap from="camera_out/image_raw" to="camera/color/image_raw"/>
+        <remap from="camera_out/camera_info" to="camera/color/camera_info"/>
+    </node>
+
+</launch>
