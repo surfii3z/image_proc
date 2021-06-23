@@ -1,5 +1,5 @@
 # image_proc
-## General Information
+## General information
 This package is a package used to do online ROI crop in the image/video
 
 ## Installation
